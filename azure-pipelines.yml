@@ -1,19 +1,21 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+- main  # Change this to your default branch if it's different
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'  # Choose an appropriate VM image
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- checkout: self
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    sudo apt-get update
+    sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu  # Install cross-compilers
+  displayName: 'Install Cross-Compiler'
+
+- script: |
+    make
+  displayName: 'Build Smart Home Server'
+
+- script: |
+    make clean
+  displayName: 'Clean Up'
