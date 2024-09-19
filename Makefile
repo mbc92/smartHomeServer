@@ -1,7 +1,7 @@
 # Define cross-compiler variables
-CXX = g++
-CXXFLAGS = -Wall -std=c++11 -O2 -march=armv8-a+crc+simd
-TARGET = SmartHomeServer
+CXX = aarch64-linux-gnu-g++
+CXXFLAGS = -Wall -O2 -march=armv8-a+crc+simd
+TARGET = smartHomeServer
 
 # Default target
 all: $(TARGET)
